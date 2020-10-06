@@ -4,6 +4,11 @@
    the type library 'oit2'
 */
 
+#define __int8 char
+#define __int16 short
+#define __int32 int
+#define __int64 long long
+
 struct C_SDK::Classes::CVerifiedUserCmd;
 struct OneTap::Structs::Animation::Data;
 struct C_SDK::Classes::Math::Matrix3x4;
@@ -1302,5 +1307,68 @@ struct C_SDK::Engine::Surface::PanRenderableInfo
   C_SDK::Classes::Math::Vector::Rectangular m_absMins;
   C_SDK::Classes::Math::Vector::Rectangular m_absMaxs;
   int pad;
+};
+
+/* 109 */
+struct OneTap::SharedData::ClientHooks
+{
+  int (__stdcall *Undefined_43F46A20)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD);
+  int (__thiscall *Undefined_43F46A24)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD);
+  int pad;
+  int (__fastcall *Undefined_43F46A2C)(_DWORD, _DWORD);
+  int (__fastcall *Undefined_43F46A30)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD);
+  int (__stdcall *Undefined_43F46A34)(_DWORD);
+  int (__stdcall *Undefined_43F46A38)(_DWORD);
+  int (__stdcall *Undefined_43F46A3C)(_DWORD);
+  int (__fastcall *Undefined_43F46A40)(_DWORD, _DWORD, _DWORD, _DWORD);
+  int (__thiscall *DrawModelExecute)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD);
+  int (__fastcall *Undefined_43F46A48)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD);
+  int pad1;
+  int (*Unknownd__43F46A50)(void);
+  int (__fastcall *FrameStageNotify)(_DWORD, _DWORD, _DWORD);
+  int (*Undefined_43F46A58)(void);
+  int (*Undefined_43F46A5C)(void);
+  int (__fastcall *GetLocalViewAngles)(_DWORD, _DWORD, _DWORD);
+  int (__cdecl *GetViewmodelFov)(_DWORD);
+  int pad2;
+  int (__fastcall *RunCommandPredict)(_DWORD, _DWORD);
+  int (__stdcall *Undefined_43F46A70)(_DWORD, _DWORD);
+  int (*Undefined_43F46A74)(void);
+  int (*Undefined_43F46A78)(void);
+  int (__fastcall *Undefined_43F46A7C)(_DWORD, _DWORD);
+  int (*Undefined_43F46A80)(void);
+  int (__fastcall *ListLeavesInBox)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD);
+  int (__stdcall *Undefined_43F46A88)(_DWORD);
+  int (__fastcall *Undefined_43F46A8C)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD);
+  int (__fastcall *Undefined_43F46A90)(_DWORD, _DWORD);
+  int (*Undefined_43F46A94)(void);
+  int (__stdcall *Undefined_43F46A98)(_DWORD, _DWORD, _DWORD, _DWORD);
+  int (__fastcall *Undefined_43F46A9C)(_DWORD, _DWORD);
+  int (__stdcall *Undefined_43F46AA0)(_DWORD);
+  int (__fastcall *LockCursor)(_DWORD, _DWORD);
+  int (__stdcall *Undefined_43F46AA8)();
+  int (__fastcall *Undefined_43F46AAC)(DWORD, _DWORD, _DWORD);
+  int (__stdcall *Undefined_4F46AB0)(_DWORD, _DWORD);
+  int (*OnScreenSizeChanged)(void);
+  int (__stdcall *Undefined_43F46AB8)(_DWORD, _DWORD);
+  int (__fastcall *Undefined_43F46ABC)(_DWORD, _DWORD, _DWORD, _DWORD);
+  int (__fastcall *OverrideView)(_DWORD, _DWORD, _DWORD);
+  int (__fastcall *Undefined_43F46AC4)(_DWORD, _DWORD, _DWORD);
+  int (__fastcall *Undefined_43F46AC8)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD);
+  int (__fastcall *Undefined_43F46ACC)(_DWORD, _DWORD, _DWORD);
+  int (__stdcall *BeginScene)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD);
+  int pad3;
+  int (__stdcall *Undefined_43F46AD8)(_DWORD, _DWORD);
+  int (__fastcall *RunCommand)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD);
+  int (__cdecl *EndScene)();
+  int (__fastcall *Undefined_43F46AE4)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD);
+  int (__fastcall *BoneSetup)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD);
+  int (*Undefined_43F46AEC)(void);
+  int (__stdcall *Undefined_43F46AF0)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD);
+  int (__fastcall *Undefined_43F46AF4)(_DWORD, _DWORD);
+  int (__cdecl *Undefined_43F46AF8)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD);
+  int (__cdecl *Undefined_43F46AFC)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD);
+  int CurrentHwid;
+  int (__fastcall *WriteUserCmdDeltaToBuffer)(C_SDK::Classes::IBaseClientDll *ecx, int edx, int slot, int bufferWrite, int from, int to, bool isNewCmd);
 };
 

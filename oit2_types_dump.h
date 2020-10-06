@@ -4,11 +4,6 @@
    the type library 'oit2'
 */
 
-#define __int8 char
-#define __int16 short
-#define __int32 int
-#define __int64 long long
-
 struct C_SDK::Classes::CVerifiedUserCmd;
 struct OneTap::Structs::Animation::Data;
 struct C_SDK::Classes::Math::Matrix3x4;
@@ -22,6 +17,144 @@ struct C_SDK::Classes::INetChannelInfo;
 struct C_SDK::Classes::EngineClient::VirtTable;
 struct C_SDK::Classes::Player::Info;
 struct C_SDK::Classes::EngineClient;
+
+/* 1 */
+enum __TI_flags
+{
+  TI_IsConst = 0x1,
+  TI_IsVolatile = 0x2,
+  TI_IsUnaligned = 0x4,
+  TI_IsPure = 0x8,
+  TI_IsWinRT = 0x10,
+};
+
+/* 2 */
+enum __CT_flags
+{
+  CT_IsSimpleType = 0x1,
+  CT_ByReferenceOnly = 0x2,
+  CT_HasVirtualBase = 0x4,
+  CT_IsWinRTHandle = 0x8,
+  CT_IsStdBadAlloc = 0x10,
+};
+
+/* 3 */
+struct FuncInfo
+{
+  int magicNumber;
+  int maxState;
+  void *pUnwindMap;
+  int nTryBlocks;
+  void *pTryBlockMap;
+  int nIPMapEntries;
+  void *pIPtoStateMap;
+  void *pESTypeList;
+  int EHFlags;
+};
+
+/* 4 */
+struct UnwindMapEntry
+{
+  int toState;
+  void *action;
+};
+
+/* 5 */
+struct TryBlockMapEntry
+{
+  int tryLow;
+  int tryHigh;
+  int catchHigh;
+  int nCatches;
+  void *pHandlerArray;
+};
+
+/* 6 */
+struct HandlerType
+{
+  int adjectives;
+  void *pType;
+  int dispCatchObj;
+  void *addressOfHandler;
+};
+
+/* 7 */
+typedef void **va_list;
+
+/* 8 */
+typedef int BOOL;
+
+/* 9 */
+union __declspec(align(8)) __m64
+{
+  unsigned __int64 m64_u64;
+  float m64_f32[2];
+  __int8 m64_i8[8];
+  __int16 m64_i16[4];
+  __int32 m64_i32[2];
+  __int64 m64_i64;
+  unsigned __int8 m64_u8[8];
+  unsigned __int16 m64_u16[4];
+  unsigned __int32 m64_u32[2];
+};
+
+/* 10 */
+union __declspec(align(16)) __m128
+{
+  float clamp;
+  unsigned __int64 m128_u64[2];
+  __int8 m128_i8[16];
+  __int16 m128_i16[8];
+  __int32 m128_i32[4];
+  __int64 m128_i64[2];
+  unsigned __int8 m128_u8[16];
+  unsigned __int16 m128_u16[8];
+  unsigned __int32 m128_u32[4];
+};
+
+/* 11 */
+struct __m128d
+{
+  double m128d_f64[2];
+};
+
+/* 12 */
+union __declspec(align(16)) __m128i
+{
+  __int8 m128i_i8[16];
+  __int16 m128i_i16[8];
+  float rate;
+  __int64 m128i_i64[2];
+  unsigned __int8 m128i_u8[16];
+  unsigned __int16 m128i_u16[8];
+  float m128i_u32;
+  unsigned __int64 m128i_u64[2];
+};
+
+/* 13 */
+union __declspec(align(32)) __m256
+{
+  float m256_f32[8];
+};
+
+/* 14 */
+union __declspec(align(32)) __m256d
+{
+  double m256d_f64[4];
+};
+
+/* 15 */
+union __declspec(align(32)) __m256i
+{
+  __int8 m256i_i8[32];
+  __int16 m256i_i16[16];
+  __int32 m256i_i32[8];
+  __int64 m256i_i64[4];
+  unsigned __int8 m256i_u8[32];
+  unsigned __int16 m256i_u16[16];
+  unsigned __int32 m256i_u32[8];
+  unsigned __int64 m256i_u64[4];
+};
 
 /* 19 */
 struct __unaligned __declspec(align(1)) C_SDK::Classes::GuiManager::DrawColor
@@ -300,6 +433,35 @@ struct C_SDK::Classes::ConVar
   void *m_changeCallback;
 };
 
+/* 28 */
+typedef struct _SCOPETABLE_ENTRY *PSCOPETABLE_ENTRY;
+
+/* 40 */
+typedef unsigned int DWORD;
+
+/* 29 */
+struct _EH3_EXCEPTION_REGISTRATION
+{
+  struct _EH3_EXCEPTION_REGISTRATION *Next;
+  PVOID ExceptionHandler;
+  PSCOPETABLE_ENTRY ScopeTable;
+  DWORD TryLevel;
+};
+
+/* 30 */
+typedef struct _EH3_EXCEPTION_REGISTRATION EH3_EXCEPTION_REGISTRATION;
+
+/* 31 */
+typedef struct _EH3_EXCEPTION_REGISTRATION *PEH3_EXCEPTION_REGISTRATION;
+
+/* 32 */
+struct CPPEH_RECORD
+{
+  DWORD old_esp;
+  EXCEPTION_POINTERS *exc_ptr;
+  struct _EH3_EXCEPTION_REGISTRATION registration;
+};
+
 /* 34 */
 struct C_SDK::Classes::CBasePlayerAnimState
 {
@@ -395,6 +557,38 @@ struct C_SDK::Structs::EventInfo
   char m_damageArmor;
   char m_hitGroup;
 };
+
+/* 38 */
+typedef unsigned __int8 BYTE;
+
+/* 39 */
+#pragma pack(push, 4)
+union _IMAGE_SECTION_HEADER::$39DFBA39B6D121CDFC1ACE66C995549C
+{
+  DWORD PhysicalAddress;
+  DWORD VirtualSize;
+};
+#pragma pack(pop)
+
+/* 41 */
+typedef unsigned __int16 WORD;
+
+/* 37 */
+#pragma pack(push, 4)
+struct _IMAGE_SECTION_HEADER
+{
+  BYTE Name[8];
+  _IMAGE_SECTION_HEADER::$39DFBA39B6D121CDFC1ACE66C995549C Misc;
+  DWORD VirtualAddress;
+  DWORD SizeOfRawData;
+  DWORD PointerToRawData;
+  DWORD PointerToRelocations;
+  DWORD PointerToLinenumbers;
+  WORD NumberOfRelocations;
+  WORD NumberOfLinenumbers;
+  DWORD Characteristics;
+};
+#pragma pack(pop)
 
 /* 43 */
 struct OneTap::Classes::CBufferedCommand
@@ -573,9 +767,6 @@ struct C_SDK::Classes::Engine::BaseClient
 {
   C_SDK::Classes::Engine::BaseClient::VirtualTable *m_virTable;
 };
-
-/* 38 */
-typedef unsigned __int8 BYTE;
 
 /* 60 */
 struct __declspec(align(4)) OneTap::Classes::AnimationSystem::PlayerAnimationData
@@ -792,7 +983,7 @@ struct __declspec(align(4)) OneTap::SharedData::ClientSnapshot
   char pad_0013[12];
   int UnkData9;
   char pad_0014[12];
-  int UnkData10;
+  int IDirect3DDevice9;
   char pad_0015[12];
   int UnkData11;
   char pad_00016[12];
@@ -1082,5 +1273,34 @@ struct __declspec(align(4)) C_SDK::Classes::Engine::Surface::Data
   C_SDK::Classes::Engine::Surface::SoundNames m_sound;
   C_SDK::Classes::Engine::Surface::GameProps m_game;
   char pad00[4];
+};
+
+/* 104 */
+struct OneTap::Classes::HookManager::Data
+{
+  __int16 m_isHooked;
+  __int16 m_unkData;
+  void *m_functionToHook;
+  void *m_hookProxy;
+  void *m_originalFunctionPointer;
+};
+
+/* 108 */
+struct C_SDK::Engine::Surface::PanRenderableInfo
+{
+  void *m_renderable;
+  void *m_alphaProperty;
+  int m_enumCount;
+  int m_renderFrame;
+  unsigned __int16 m_firstShadow;
+  unsigned __int16 m_leafList;
+  __int16 m_area;
+  __int16 m_flags;
+  __int16 m_flags2;
+  C_SDK::Classes::Math::Vector::Rectangular m_bloatedAbsMins;
+  C_SDK::Classes::Math::Vector::Rectangular m_bloatedAbsMaxs;
+  C_SDK::Classes::Math::Vector::Rectangular m_absMins;
+  C_SDK::Classes::Math::Vector::Rectangular m_absMaxs;
+  int pad;
 };
 

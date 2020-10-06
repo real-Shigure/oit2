@@ -1310,7 +1310,7 @@ struct C_SDK::Engine::Surface::PanRenderableInfo
 };
 
 /* 109 */
-struct OneTap::SharedData::ClientHooks
+struct __declspec(align(4)) OneTap::SharedData::ClientHooks
 {
   int (__stdcall *Undefined_43F46A20)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD);
   int (__thiscall *Undefined_43F46A24)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD);
@@ -1324,7 +1324,7 @@ struct OneTap::SharedData::ClientHooks
   int (__thiscall *DrawModelExecute)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD);
   int (__fastcall *Undefined_43F46A48)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD);
   int pad1;
-  int (*Unknownd__43F46A50)(void);
+  int (*Undefined_43F46A50)(void);
   int (__fastcall *FrameStageNotify)(_DWORD, _DWORD, _DWORD);
   int (*Undefined_43F46A58)(void);
   int (*Undefined_43F46A5C)(void);
@@ -1371,4 +1371,3 @@ struct OneTap::SharedData::ClientHooks
   int CurrentHwid;
   int (__fastcall *WriteUserCmdDeltaToBuffer)(C_SDK::Classes::IBaseClientDll *ecx, int edx, int slot, int bufferWrite, int from, int to, bool isNewCmd);
 };
-

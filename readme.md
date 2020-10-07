@@ -7,8 +7,12 @@ ___
 
 #### Warnings:
 
-1. The reverse may contain misinterpretation of the source code.
-2. There may be problems loading IDBs in IDA versions newer than 7.2.
+
+  1. ###### We are not cheat developers. 
+     ######  The IDB was created using code from: Forums like UC / Cheat projects like desync.vip.
+     ###### Note: If you understand the Source SDK and want to help us - create pull requests / Issues with fixes. Thanks.
+  2. ###### The reverse may contain misinterpretation of the source code.
+  3. ###### There may be problems loading IDB in IDA versions newer than 7.2.
 
 ####
 ####

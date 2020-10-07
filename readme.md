@@ -32,3 +32,10 @@ ___
 ##### TO-DO:
  - [ ] Full-reverse of already existing functions. [Aimbot trace engine/Ragebot/Legitbot/Etc]
  - [ ] Full restoration of variables from the menu.
+
+####
+##### Security notes:
+
+   1. To reconstruct xor strings, you can use our utility: http://www.cpp.sh/5jad4.
+   2. To find out the possible meaning that is hidden in FNV1A, you can use the online fnv1a canculators: https://md5calc.com/hash/fnv1a32.
+

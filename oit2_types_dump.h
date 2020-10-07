@@ -11,8 +11,18 @@
 
 struct C_SDK::Classes::CVerifiedUserCmd;
 struct OneTap::Structs::Animation::Data;
+struct C_SDK::Classes::Math::Matrix3x4;
+struct C_SDK::Classes::EngineTrace::Ray;
+struct C_SDK::Classes::EngineTrace::Trace;
+struct C_SDK::Classes::EngineTrace::VirtTable;
+struct C_SDK::Classes::EngineTrace;
+struct C_SDK::Classes::Math::VirtualMatrix;
+struct C_SDK::Classes::INetChannelInfo::VirtTable;
+struct C_SDK::Classes::INetChannelInfo;
+struct C_SDK::Classes::EngineClient::VirtTable;
 struct C_SDK::Classes::Player::Info;
-struct C_SDK::Clases::ICVar;
+struct C_SDK::Classes::EngineClient;
+struct C_SDK::Classes::ICVar;
 
 /* 1 */
 enum __TI_flags
@@ -1951,7 +1961,21 @@ struct __declspec(align(4)) OneTap::SharedData::ClientSnapshot
   char pad_0002[12];
   int *LocalPlayer;
   char pad_0003[12];
-  C_SDK::Clases::ICVar *ICvar;
+  C_SDK::Classes::ICVar *ICVar;
+  char pad_0004[12];
+  C_SDK::Classes::EngineClient *EngineClient;
+  char pad_0005[12];
+  C_SDK::Classes::EngineTrace *EngineTrace;
+  char pad_0006[12];
+  C_SDK::Classes::CGlobalVarsBase *GlobalVars;
+  char pad_0007[12];
+  int UnkData5;
+  char pad_0008[12];
+  int ISurface;
+  char pad_0009[12];
+  int UnkData6;
+  char pad_0010[12];
+  int UnkData7;
   char pad_0011[12];
   int UnkData8;
   char pad_0012[12];
@@ -1970,9 +1994,9 @@ struct __declspec(align(4)) OneTap::SharedData::ClientSnapshot
 };
 
 /* 117 */
-struct __declspec(align(4)) C_SDK::Clases::ICVar
+struct __declspec(align(4)) C_SDK::Classes::ICVar
 {
-  C_SDK::Clases::ICVar *Interfaces;
+  C_SDK::Classes::ICVar *Interfaces;
   void (__stdcall *Disconnect)();
   void *(__stdcall *QueryInterface)(const char *interface);
   int (__stdcall *Init)();
@@ -2003,121 +2027,16 @@ struct __declspec(align(4)) C_SDK::Clases::ICVar
   void (__stdcall *RevertFlaggedConVars)(int flag);
 };
 
-/* 85 */
-struct C_SDK::Classes::Math::Matrix3x4
+/* 97 */
+struct C_SDK::Classes::EngineClient
 {
-  float m_matVal[3][4];
-};
-
-/* 86 */
-struct __declspec(align(1)) C_SDK::Classes::EngineTrace::Ray
-{
-  C_SDK::Classes::Math::Vector::Aligned m_start;
-  C_SDK::Classes::Math::Vector::Aligned m_delta;
-  C_SDK::Classes::Math::Vector::Aligned m_startOffset;
-  C_SDK::Classes::Math::Vector::Aligned m_extents;
-  const C_SDK::Classes::Math::Matrix3x4 *m_worldAxisTransform;
-  bool m_isRay;
-  bool m_isSwept;
-};
-
-/* 87 */
-struct __declspec(align(1)) C_SDK::Classes::Engine::CSurface
-{
-  const char *m_name;
-  __int16 m_surfaceProps;
-  unsigned __int16 m_flags;
-};
-
-/* 89 */
-struct __declspec(align(1)) C_SDK::Classes::Engine::CPlane
-{
-  C_SDK::Classes::Math::Vector::Rectangular m_normal;
-  float m_distance;
-  unsigned __int8 m_type;
-  unsigned __int8 m_signBits;
-  unsigned __int8 pad[2];
-};
-
-/* 88 */
-struct __declspec(align(1)) C_SDK::Classes::EngineTrace::Trace
-{
-  C_SDK::Classes::Math::Vector::Rectangular m_start;
-  C_SDK::Classes::Math::Vector::Rectangular m_endPos;
-  C_SDK::Classes::Engine::CPlane m_plane;
-  float m_fraction;
-  int m_contents;
-  _BYTE m_dispFlags[2];
-  _BYTE m_allSolid;
-  _BYTE m_startSolid;
-  float m_fractionLeftSolid;
-  C_SDK::Classes::Engine::CSurface m_surface;
-  int m_hitGroup;
-  __int16 m_physicsBone;
-  _BYTE m_worldSurfaceIndex[2];
-  void *m_entity;
-  int m_hitBox;
-};
-
-/* 90 */
-struct C_SDK::Classes::EngineTrace::VirtTable
-{
-  int (__stdcall *GetPointContents)(C_SDK::Classes::Math::Vector::Rectangular *absPosition, int contentsMask, void ***entity);
-  int pad01;
-  int pad02;
-  void (__stdcall *ClipRayToEntity)(C_SDK::Classes::EngineTrace::Ray *, unsigned int, void *, C_SDK::Classes::EngineTrace::Trace *);
-  int pad04;
-  void (__stdcall *TraceRay)(C_SDK::Classes::EngineTrace::Ray *ray, unsigned int mask, void *traceFilter, C_SDK::Classes::EngineTrace::Trace *trace);
+  C_SDK::Classes::EngineClient::VirtTable *m_vtable;
 };
 
 /* 91 */
 struct C_SDK::Classes::EngineTrace
 {
   C_SDK::Classes::EngineTrace::VirtTable *m_vtable;
-};
-
-/* 92 */
-struct C_SDK::Classes::Math::VirtualMatrix
-{
-  float m_matrix[4][4];
-};
-
-/* 93 */
-struct __declspec(align(4)) C_SDK::Classes::INetChannelInfo::VirtTable
-{
-  const char *(__stdcall *GetName)();
-  const char *(__stdcall *GetAddress)();
-  float (__stdcall *GetTime)();
-  float (__stdcall *GetTimeConnected)();
-  int (__stdcall *GetBufferSize)();
-  int (__stdcall *GetDataRate)();
-  bool (__stdcall *IsLoopback)();
-  bool (__stdcall *IsTimingOut)();
-  bool (__stdcall *IsPlayback)();
-  float (__stdcall *GetLatency)(int flow);
-  float (__stdcall *GetAvgLatency)(int flow);
-  float (__stdcall *GetAvgLoss)(int flow);
-  float (__stdcall *GetAvgChoke)(int flow);
-  float (__stdcall *GetAvgData)(int flow);
-  float (__stdcall *GetAvgPackets)(int flow);
-  int (__stdcall *GetTotalData)(int flow);
-  int (__stdcall *GetTotalPackets)(int flow);
-  int (__stdcall *GetSequenceNr)(int flow);
-  bool (__stdcall *IsValidPacket)(int flow, int frameNumber);
-  float (__stdcall *GetPacketTime)(int flow, int frameNumber);
-  int (__stdcall *GetPacketBytes)(int flow, int frameNumber, int group);
-  bool (__stdcall *GetStreamProgress)(int flow, int *received, int *total);
-  float (__stdcall *GetTimeSinceLastReceived)();
-  float (__stdcall *GetCommandInterpolationAmount)(int flow, int frameNumber);
-  void (__stdcall *GetPacketResponseLatency)(int flow, int frameNumber, int *latencyMsecs, int *choke);
-  void (__stdcall *GetRemoteFramerate)(float *frameTime, float *frameTimeStdDeviation, float *frameStartTimeStdDeviation);
-  float (__stdcall *GetTimeoutSeconds)();
-};
-
-/* 94 */
-struct C_SDK::Classes::INetChannelInfo
-{
-  C_SDK::Classes::INetChannelInfo::VirtTable *m_vtable;
 };
 
 /* 95 */
@@ -2206,6 +2125,17 @@ struct C_SDK::Classes::EngineClient::VirtTable
   int pad80;
 };
 
+/* 90 */
+struct C_SDK::Classes::EngineTrace::VirtTable
+{
+  int (__stdcall *GetPointContents)(C_SDK::Classes::Math::Vector::Rectangular *absPosition, int contentsMask, void ***entity);
+  int pad01;
+  int pad02;
+  void (__stdcall *ClipRayToEntity)(C_SDK::Classes::EngineTrace::Ray *, unsigned int, void *, C_SDK::Classes::EngineTrace::Trace *);
+  int pad04;
+  void (__stdcall *TraceRay)(C_SDK::Classes::EngineTrace::Ray *ray, unsigned int mask, void *traceFilter, C_SDK::Classes::EngineTrace::Trace *trace);
+};
+
 /* 96 */
 struct C_SDK::Classes::Player::Info
 {
@@ -2218,10 +2148,104 @@ struct C_SDK::Classes::Player::Info
   char pad02[163];
 };
 
-/* 97 */
-struct C_SDK::Classes::EngineClient
+/* 92 */
+struct C_SDK::Classes::Math::VirtualMatrix
 {
-  C_SDK::Classes::EngineClient::VirtTable *m_vtable;
+  float m_matrix[4][4];
+};
+
+/* 94 */
+struct C_SDK::Classes::INetChannelInfo
+{
+  C_SDK::Classes::INetChannelInfo::VirtTable *m_vtable;
+};
+
+/* 86 */
+struct __declspec(align(1)) C_SDK::Classes::EngineTrace::Ray
+{
+  C_SDK::Classes::Math::Vector::Aligned m_start;
+  C_SDK::Classes::Math::Vector::Aligned m_delta;
+  C_SDK::Classes::Math::Vector::Aligned m_startOffset;
+  C_SDK::Classes::Math::Vector::Aligned m_extents;
+  const C_SDK::Classes::Math::Matrix3x4 *m_worldAxisTransform;
+  bool m_isRay;
+  bool m_isSwept;
+};
+
+/* 89 */
+struct __declspec(align(1)) C_SDK::Classes::Engine::CPlane
+{
+  C_SDK::Classes::Math::Vector::Rectangular m_normal;
+  float m_distance;
+  unsigned __int8 m_type;
+  unsigned __int8 m_signBits;
+  unsigned __int8 pad[2];
+};
+
+/* 87 */
+struct __declspec(align(1)) C_SDK::Classes::Engine::CSurface
+{
+  const char *m_name;
+  __int16 m_surfaceProps;
+  unsigned __int16 m_flags;
+};
+
+/* 88 */
+struct __declspec(align(1)) C_SDK::Classes::EngineTrace::Trace
+{
+  C_SDK::Classes::Math::Vector::Rectangular m_start;
+  C_SDK::Classes::Math::Vector::Rectangular m_endPos;
+  C_SDK::Classes::Engine::CPlane m_plane;
+  float m_fraction;
+  int m_contents;
+  _BYTE m_dispFlags[2];
+  _BYTE m_allSolid;
+  _BYTE m_startSolid;
+  float m_fractionLeftSolid;
+  C_SDK::Classes::Engine::CSurface m_surface;
+  int m_hitGroup;
+  __int16 m_physicsBone;
+  _BYTE m_worldSurfaceIndex[2];
+  void *m_entity;
+  int m_hitBox;
+};
+
+/* 93 */
+struct __declspec(align(4)) C_SDK::Classes::INetChannelInfo::VirtTable
+{
+  const char *(__stdcall *GetName)();
+  const char *(__stdcall *GetAddress)();
+  float (__stdcall *GetTime)();
+  float (__stdcall *GetTimeConnected)();
+  int (__stdcall *GetBufferSize)();
+  int (__stdcall *GetDataRate)();
+  bool (__stdcall *IsLoopback)();
+  bool (__stdcall *IsTimingOut)();
+  bool (__stdcall *IsPlayback)();
+  float (__stdcall *GetLatency)(int flow);
+  float (__stdcall *GetAvgLatency)(int flow);
+  float (__stdcall *GetAvgLoss)(int flow);
+  float (__stdcall *GetAvgChoke)(int flow);
+  float (__stdcall *GetAvgData)(int flow);
+  float (__stdcall *GetAvgPackets)(int flow);
+  int (__stdcall *GetTotalData)(int flow);
+  int (__stdcall *GetTotalPackets)(int flow);
+  int (__stdcall *GetSequenceNr)(int flow);
+  bool (__stdcall *IsValidPacket)(int flow, int frameNumber);
+  float (__stdcall *GetPacketTime)(int flow, int frameNumber);
+  int (__stdcall *GetPacketBytes)(int flow, int frameNumber, int group);
+  bool (__stdcall *GetStreamProgress)(int flow, int *received, int *total);
+  float (__stdcall *GetTimeSinceLastReceived)();
+  float (__stdcall *GetCommandInterpolationAmount)(int flow, int frameNumber);
+  void (__stdcall *GetPacketResponseLatency)(int flow, int frameNumber, int *latencyMsecs, int *choke);
+  void (__stdcall *GetRemoteFramerate)(float *frameTime, float *frameTimeStdDeviation, float *frameStartTimeStdDeviation);
+  float (__stdcall *GetTimeoutSeconds)();
+};
+
+/* 85 */
+struct C_SDK::Classes::Math::Matrix3x4
+{
+  float m_matVal[3][4];
 };
 
 /* 98 */

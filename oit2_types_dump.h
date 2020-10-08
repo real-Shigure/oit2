@@ -360,7 +360,7 @@ struct C_SDK::Classes::CPrediction
 };
 
 /* 25 */
-struct C_SDK::Classes::CUserCmd
+struct __declspec(align(4)) C_SDK::Classes::CUserCmd
 {
   char m_virtualDeconstructor[4];
   int m_commandNumber;
@@ -1779,7 +1779,7 @@ struct __declspec(align(4)) OneTap::Classes::AnimationSystem::PlayerAnimationDat
   _DWORD m_qualityStatus;
   _BYTE m_flagsCount;
   char gap25[11];
-  float m_quality;
+  float m_duckAmount;
   float m_feetCycle;
   float m_feetWeight;
   _BYTE gap3C[12];
@@ -1826,7 +1826,7 @@ struct __unaligned __declspec(align(1)) OneTap::Classes::Player::AnimLagData
   _BYTE gap15[3];
   float float18;
   _BYTE gap1C[4];
-  _DWORD dword20;
+  _DWORD m_duckAmount;
   _BYTE m_flags;
   _BYTE gap25[15];
   _DWORD m_eyeAngles_x;
@@ -1955,7 +1955,7 @@ enum C_SDK::Classes::Player::HitGroup
 /* 84 */
 struct __declspec(align(4)) OneTap::SharedData::ClientSnapshot
 {
-  int UnkData;
+  int HlClient;
   char pad_0001[12];
   int UnkData2;
   char pad_0002[12];

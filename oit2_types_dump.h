@@ -10,7 +10,6 @@
 #define __int64 long long
 
 struct C_SDK::Classes::CVerifiedUserCmd;
-struct OneTap::Structs::Animation::Data;
 struct C_SDK::Classes::Math::Matrix3x4;
 struct C_SDK::Classes::EngineTrace::Ray;
 struct C_SDK::Classes::EngineTrace::Trace;
@@ -23,6 +22,7 @@ struct C_SDK::Classes::EngineClient::VirtTable;
 struct C_SDK::Classes::Player::Info;
 struct C_SDK::Classes::EngineClient;
 struct C_SDK::Classes::ICVar;
+struct OneTap::Classes::Animation::LagData;
 
 /* 1 */
 enum __TI_flags
@@ -129,7 +129,7 @@ union __declspec(align(16)) __m128i
 {
   __int8 m128i_i8[16];
   __int16 m128i_i16[8];
-  float rate;
+  float float;
   __int64 m128i_i64[2];
   unsigned __int8 m128i_u8[16];
   unsigned __int16 m128i_u16[8];
@@ -495,24 +495,9 @@ struct C_SDK::Classes::CBasePlayerAnimState
   byte pad4[520];
   float m_minBodyYaw;
   float m_maxBodyYaw;
-  OneTap::Structs::Animation::Data *m_feetYawRate;
+  #64 *m_feetYawRate;
   float m_feetCycle;
   float m_animsetVersion;
-};
-
-/* 64 */
-struct __declspec(align(4)) OneTap::Structs::Animation::Data
-{
-  _BYTE gap0[112];
-  _BYTE isAnimationUpdateRequest;
-  _DWORD dword74;
-  _DWORD dword78;
-  _DWORD dword7C;
-  _BYTE gap80[12];
-  _DWORD dword8C;
-  _BYTE gap90[740];
-  float m_absYaw_0_;
-  float m_absYaw_1_;
 };
 
 /* 113 */
@@ -1515,32 +1500,32 @@ enum C_SDK::Classes::Animation::Activity
 };
 
 /* 35 */
-struct C_SDK::Classes::CAnimationLayer::Server
+struct __declspec(align(4)) C_SDK::Classes::CAnimationLayer::Server
 {
   int m_flags;
   bool m_sequenceFinished;
   bool m_looping;
-  int m_sequence;
-  float m_cycle;
-  float m_playbackRate;
-  float m_prevCycle;
-  float m_weight;
-  float m_weightDeltaRate;
-  float m_blendIn;
-  float m_blendOut;
-  float m_killRate;
-  float m_killDelay;
-  float m_layerAnimTime;
-  float m_layerFadeOutTime;
-  void *m_dispatchedStudioHdr;
-  int m_dispatchedSrc;
-  int m_dispatchedDst;
-  void *m_activity;
-  C_SDK::Classes::Animation::Activity activity;
-  int m_order;
-  float m_lastEventCheck;
-  float m_lastAccess;
-  void *m_ownerEntity;
+  __unaligned __declspec(align(1)) int m_sequence;
+  __unaligned __declspec(align(1)) float m_cycle;
+  __unaligned __declspec(align(1)) float m_playbackRate;
+  __unaligned __declspec(align(1)) float m_prevCycle;
+  __unaligned __declspec(align(1)) float m_weight;
+  __unaligned __declspec(align(1)) float m_weightDeltaRate;
+  __unaligned __declspec(align(1)) float m_blendIn;
+  __unaligned __declspec(align(1)) float m_blendOut;
+  __unaligned __declspec(align(1)) float m_killRate;
+  __unaligned __declspec(align(1)) float m_killDelay;
+  __unaligned __declspec(align(1)) float m_layerAnimTime;
+  __unaligned __declspec(align(1)) float m_layerFadeOutTime;
+  __unaligned __declspec(align(1)) void *m_dispatchedStudioHdr;
+  __unaligned __declspec(align(1)) int m_dispatchedSrc;
+  __unaligned __declspec(align(1)) int m_dispatchedDst;
+  __unaligned __declspec(align(1)) void *m_activity;
+  __unaligned __declspec(align(1)) C_SDK::Classes::Animation::Activity activity;
+  __unaligned __declspec(align(1)) int m_order;
+  __unaligned __declspec(align(1)) float m_lastEventCheck;
+  __unaligned __declspec(align(1)) float m_lastAccess;
+  __unaligned __declspec(align(1)) void *m_ownerEntity;
 };
 
 /* 36 */
@@ -1766,52 +1751,6 @@ struct C_SDK::Classes::Engine::BaseClient::VirtualTable
 struct C_SDK::Classes::Engine::BaseClient
 {
   C_SDK::Classes::Engine::BaseClient::VirtualTable *m_virTable;
-};
-
-/* 60 */
-struct __declspec(align(4)) OneTap::Classes::AnimationSystem::PlayerAnimationData
-{
-  BYTE m_flags[8];
-  _DWORD m_lowerBodyYaw;
-  C_SDK::Classes::Math::Vector::Rectangular m_angles;
-  float float18;
-  _BYTE gap1C[4];
-  _DWORD m_qualityStatus;
-  _BYTE m_flagsCount;
-  char gap25[11];
-  float m_duckAmount;
-  float m_feetCycle;
-  float m_feetWeight;
-  _BYTE gap3C[12];
-  _DWORD dword48;
-  _DWORD dword4C;
-  _DWORD dword50;
-  _BYTE gap54[12];
-  void *m_entity;
-};
-
-/* 62 */
-struct __unaligned __declspec(align(1)) OneTap::Classes::AnimationData
-{
-  _BYTE gap0[8];
-  _DWORD m_lag;
-  _BYTE gapC[4];
-  float float10;
-  _BYTE byte14;
-  _BYTE gap15[3];
-  float float18;
-  _BYTE gap1C[4];
-  _DWORD dword20;
-  _BYTE byte24;
-  _BYTE gap25[15];
-  _DWORD m_eyeAngles_x;
-  float m_eyeAngles_y;
-  _BYTE gap3C[12];
-  _DWORD dword48;
-  _DWORD dword4C;
-  _DWORD dword50;
-  _BYTE gap54[12];
-  char char60;
 };
 
 /* 67 */
@@ -2445,5 +2384,95 @@ struct __declspec(align(4)) OneTap::SharedData::ClientHooks
   int (__cdecl *Undefined_43F46AFC)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD, _DWORD);
   int (__stdcall *WndProc)(_DWORD, _DWORD, _DWORD, _DWORD);
   int (__fastcall *WriteUserCmdDeltaToBuffer)(C_SDK::Classes::IBaseClientDll *ecx, int edx, int slot, int bufferWrite, int from, int to, bool isNewCmd);
+};
+
+/* 118 */
+struct __declspec(align(4)) OneTap::Classes::Animation::Record
+{
+  _BYTE byte0;
+  _BYTE gap1[71];
+  float m_additionalBits;
+  _BYTE gap4C[16];
+  OneTap::Classes::Animation::LagData *rotationData;
+  _BYTE gap60[12];
+  _DWORD dword6C;
+  bool m_isUpdatingAnimations;
+  bool m_isChangedEyePos;
+  bool field_72;
+  bool field_73;
+  C_SDK::Classes::Math::Vector::Rectangular m_eyePos;
+  C_SDK::Classes::Math::Vector::Rectangular m_backupEyePos;
+  _DWORD m_legacyData;
+  _DWORD m_oldPoseParameters;
+  _BYTE gap94[732];
+  _BYTE isEnemy;
+  char field_371;
+  char field_372;
+  char field_373;
+  int m_absYaw[2];
+  _BYTE gap37C[20];
+  C_SDK::Classes::Math::Vector::Rectangular m_origin;
+  _BYTE gap39C[12296];
+  _BYTE byte33A4;
+  _BYTE gap33A5[6147];
+  _BYTE byte4BA8;
+  _BYTE gap4BA9[6147];
+  _BYTE byte63AC;
+  _BYTE gap63AD[6147];
+  _BYTE byte7BB0;
+  _BYTE gap7BB1[6147];
+  _BYTE byteAD10;
+  _BYTE gap93B5[6147];
+  _BYTE m_isScoped;
+  _BYTE gapABB9[6175];
+  float floatC3D8;
+  float dwordC3DC;
+  float floatC3E0;
+  float field_C3E4;
+  float field_C3E8;
+  _DWORD dwordC3EC;
+};
+
+/* 119 */
+struct __declspec(align(4)) OneTap::Classes::Animation::LagData
+{
+  bool m_dormant;
+  _BYTE field_1[3];
+  _DWORD dword1;
+  _DWORD m_lag;
+  char field_C;
+  char field_D;
+  char field_E;
+  char field_F;
+  float m_simulationTime;
+  _BYTE byte14;
+  float float18;
+  _BYTE gap1C[4];
+  _DWORD m_duckAmount;
+  _BYTE m_flags;
+  _BYTE gap25[15];
+  C_SDK::Classes::Math::Vector::Rectangular m_eyeAngles;
+  _BYTE gap40[8];
+  C_SDK::Classes::Math::Vector::Rectangular m_velocity;
+  _BYTE gap54[12];
+  C_SDK::Classes::CAnimationLayer::Client m_serverAnimationLayers[13];
+  float m_feetYawRate;
+  float m_feetCycle;
+  int m_way;
+  int m_side;
+  C_SDK::Classes::CAnimationLayer::Client m_resolveAnimationLayers[3][13];
+  _BYTE gapBD0[144];
+  char field_60[100];
+  char char60;
+};
+
+/* 120 */
+struct __declspec(align(4)) OneTap::Classes::Animation::LegacyLagData
+{
+  float m_speed;
+  int m_duckAmount;
+  C_SDK::Classes::Math::Vector::Rectangular m_desiredEyePos;
+  char pad10[12];
+  bool unk2;
 };
 
